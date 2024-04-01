@@ -17,59 +17,107 @@ The project consists of several HTML files along with corresponding CSS files an
 
 The project directory structure is organized as follows:
 
-\`\`\`
 web_static/
 │
+
 ├── 0-index.html
+
 ├── 1-index.html
+
 ├── 2-index.html
+
 ├── 3-index.html
+
 ├── 4-index.html
+
 ├── 5-index.html
+
 ├── 6-index.html
+
 ├── 7-index.html
+
 ├── 8-index.html
+
 │
+
 ├── styles/
+
 │   ├── 2-common.css
+
 │   ├── 2-header.css
+
 │   ├── 2-footer.css
+
 │   ├── 3-common.css
+
 │   ├── 3-header.css
+
 │   ├── 3-footer.css
+
 │   ├── 4-common.css
+
 │   ├── 4-header.css
+
 │   ├── 4-footer.css
+
 │   ├── 5-common.css
+
 │   ├── 5-header.css
+
 │   ├── 5-footer.css
+
 │   ├── 5-filters.css
+
 │   ├── 6-common.css
+
 │   ├── 6-header.css
+
 │   ├── 6-footer.css
+
 │   ├── 6-filters.css
+
 │   ├── 7-common.css
+
 │   ├── 7-header.css
+
 │   ├── 7-footer.css
+
 │   ├── 7-filters.css
+
 │   ├── 7-places.css
+
 │   ├── 8-common.css
+
 │   ├── 8-header.css
+
 │   ├── 8-footer.css
+
 │   ├── 8-filters.css
+
 │   └── 8-places.css
+
 │
+
 └── images/
+
     ├── icon.png
+
     ├── logo.png
+
     ├── icon_group.png
+
     ├── icon_bed.png
+
     ├── icon_bath.png
+
     ├── icon_pets.png
+
     ├── icon_tv.png
+
     ├── icon_wifi.png
+
     └── [additional image files]
-\`\`\`
+
 
 ## Requirements
 
