@@ -84,50 +84,44 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
-    """Usage: create <Class name> <param 1> <param 2> <param 3>...
-    Create a new class instance with given parameters and print its id.
     """
-    argl = arg.split()
-    if len(argl) == 0:
+    Creates a new instance of a specified class with optional parameters
+    and saves it to the JSON file.
+    Usage: create <Class name> <param 1> <param 2> <param 3>...
+    Param syntax: <key name>=<value>
+    Value syntax:
+    String: "<value>" => starts with a double quote
+    Float: <unit>.<decimal> => contains a dot .
+    Integer: <number> => default case
+    """
+    args = arg.split()
+    if len(args) == 0:
         print("** class name missing **")
         return
-
-    class_name = argl[0]
-    if class_name not in HBNBCommand.__classes:
+    class_name = args[0]
+    if class_name not in self.__classes:
         print("** class doesn't exist **")
         return
-
-    cls = HBNBCommand.__classes[class_name]
-    param_dict = {}
-    for param in argl[1:]:
-        parts = param.split('=')
-        if len(parts) != 2:
-            print(f"Invalid parameter: {param}")
-            continue
-        
-        key, value = parts
-        if not value.startswith('"') or not value.endswith('"'):
-            print(f"Invalid value for parameter {key}: {value}")
-            continue
-        
-        # Remove surrounding quotes and replace escaped characters
-        value = value[1:-1].replace('\\"', '"').replace('_', ' ')
-        
-        # Parse value types
-        if '.' in value:
-            try:
-                value = float(value)
-            except ValueError:
-                print(f"Invalid float value for parameter {key}: {value}")
-                continue
-        elif value.isdigit():
-            value = int(value)
-        
-        param_dict[key] = value
-
-    obj = cls(**param_dict)
-    obj.save()
-    print(obj.id)
+    new_instance = eval(class_name)()
+    if len(args) > 1:
+        kwargs = {}
+        for pair in args[1:]:
+            if '=' in pair:
+                key, value = pair.split('=')
+                if value[0] == '"' and value[-1] == '"':
+                    value = value[1:-1].replace('_', ' ')
+                elif '.' in value:
+                    value = float(value)
+                else:
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        continue
+                kwargs[key] = value
+        for key, value in kwargs.items():
+            setattr(new_instance, key, value)
+    new_instance.save()
+    print(new_instance.id)
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
